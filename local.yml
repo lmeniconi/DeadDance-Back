@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  laravel:
+    image: bitnami/laravel
+    environment:
+      - DB_HOST=mariadb
+      - DB_DATABASE=db
+      - DB_USERNAME=usr
+      - DB_PASSWORD=pwd
+    depends_on:
+      - mariadb
+    ports:
+      - 8080:3000
+    volumes:
+      - ./:/app
+
+  mariadb:
+    image: mariadb
+    environment:
+      - MARIADB_ROOT_PASSWORD=pwd
+      - MARIADB_DATABASE=db
+      - MARIADB_USER=usr
+      - MARIADB_PASSWORD=pwd
+
+  phpmyadmin:
+    image: phpmyadmin
+    environment:
+      - PMA_HOST=mariadb
+    depends_on:
+      - mariadb
+    ports:
+      - 8000:80
