@@ -42,6 +42,6 @@ class AppointmentToday implements Rule
      */
     public function message()
     {
-        return 'Appointment has to be today.';
+        return 'Appointment cannot be reserved on past.';
     }
 }
