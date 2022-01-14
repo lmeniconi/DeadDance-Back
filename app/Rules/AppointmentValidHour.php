@@ -42,6 +42,6 @@ class AppointmentValidHour implements Rule
      */
     public function message()
     {
-        return 'The selected hour is not valid. Format: Y-m-d H:i:s';
+        return 'The selected hour is not valid 9AM - 6PM. Format: Y-m-d H:i:s';
     }
 }

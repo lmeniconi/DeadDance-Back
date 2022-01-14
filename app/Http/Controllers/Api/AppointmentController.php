@@ -128,10 +128,11 @@ class AppointmentController extends Controller
     public function update(Request $request, $id)
     {
         $appointment = $this->getAppointmentById($id);
-        
         $rules = Appointment::rules();
-        if($request->all()['start'] == $appointment->start) {
-            array_pop($rules);
+        if($request->all()['start'] ?? null  ) {
+            if($request->all()['start'] == $appointment->start) {
+                array_pop($rules);
+            }
         }
         $request->validate($rules);
         $appointment->update($request->all());
