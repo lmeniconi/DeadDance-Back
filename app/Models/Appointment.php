@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Rules\AppointmentValidHour;
 use App\Rules\AppointmentOverlap;
 use App\Rules\AppointmentNotWeekend;
+use App\Rules\AppointmentToday;
 
 class Appointment extends Model
 {
@@ -18,7 +19,7 @@ class Appointment extends Model
         return [
             'name' => ['required'],
             'email' => ['required', 'email'],
-            'start' => ['required', 'date', 'after:today', new AppointmentValidHour(), new AppointmentNotWeekend(), new AppointmentOverlap()],
+            'start' => ['required', 'date', 'after:today', new AppointmentValidHour(), new AppointmentToday(), new AppointmentNotWeekend(), new AppointmentOverlap()],
         ];
     }
 

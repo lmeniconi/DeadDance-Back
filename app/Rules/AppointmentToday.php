@@ -3,11 +3,8 @@
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
-use Illuminate\Support\Facades\Config;
 
-use App\Models\Appointment;
-
-class AppointmentValidHour implements Rule
+class AppointmentToday implements Rule
 {
     /**
      * Create a new rule instance.
@@ -16,7 +13,7 @@ class AppointmentValidHour implements Rule
      */
     public function __construct()
     {
-            //   
+        //
     }
 
     /**
@@ -28,11 +25,14 @@ class AppointmentValidHour implements Rule
      */
     public function passes($attribute, $value)
     {
-            $datetime = explode(' ', $value);
-            if (count($datetime) != 2) {
+        $aux = explode(" ", $value);
+        if (date($aux[0]) == date('Y-m-d')) {
+            $now = date('Y-m-d H:i:s');
+            if (date($value) <= $now) {
                 return false;
             }
-            return in_array($datetime[1], Config::get('hours.valid_hours'));        
+        }
+        return true;
     }
 
     /**
@@ -42,6 +42,6 @@ class AppointmentValidHour implements Rule
      */
     public function message()
     {
-        return 'The selected hour is not valid 9AM - 5PM. Format: Y-m-d H:i:s';
+        return 'Appointment has to be today.';
     }
 }
