@@ -21,11 +21,7 @@ class AppointmentController extends Controller
      *          response=200,
      *          description="Successful operation",
      *       ),
-     *      @OA\Response(
-     *          response=401,
-     *          description="Unauthenticated",
-     *      ),
-     *     )
+     *  )
      */
     public function index(Request $request)
     {
