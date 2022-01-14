@@ -7,6 +7,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Config;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -60,7 +61,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function configureRateLimiting()
     {
         RateLimiter::for('appointments', function (Request $request) {
-            return Limit::perHour(1);
+            return Limit::perHour(Config::get('appointments.max_per_hour'));
         });
 
         RateLimiter::for('api', function (Request $request) {
