@@ -18,7 +18,7 @@
 -   php artisan key:generate (we don't using password hashing but is a good practice)
 -   docker-compose -f local.yml up
 
-API will be on localhost:8080/api - [PHPMyAdmin](http://localhost:8000/) will be on localhost:8000
+API will be on [localhost:8080/api](http://localhost:8080/api/documentation) - [PHPMyAdmin](http://localhost:8000/) will be on localhost:8000
 
 ### Docs
 
