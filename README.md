@@ -23,6 +23,9 @@ $ composer install
 # generate the app secret key (we don't using password hashing but is a good practice)
 $ php artisan key:generate
 
+# generate Swagger docs
+$ php artisan l5-swagger:generate
+
 # start the project
 $ docker-compose -f local.yml up
 ```
