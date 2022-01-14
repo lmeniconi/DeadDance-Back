@@ -14,14 +14,15 @@
 ### Startup
 
 -   cp .env.example .env
+-   composer install
 -   php artisan key:generate (we don't using password hashing but is a good practice)
 -   docker-compose -f local.yml up
 
-API will be on localhost:8080 - PHPMyAdmin will be on localhost:8000
+API will be on localhost:8080/api - [PHPMyAdmin](http://localhost:8000/) will be on localhost:8000
 
 ### Docs
 
-Docs will be on localhost:8080/api/documentation
+[Docs](http://localhost:8080/api/documentation) will be on localhost:8080/api/documentation
 
 ## License
 
