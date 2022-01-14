@@ -3,11 +3,8 @@
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
-use Illuminate\Support\Facades\Config;
 
-use App\Models\Appointment;
-
-class AppointmentValidHour implements Rule
+class AppointmentNotWeekend implements Rule
 {
     /**
      * Create a new rule instance.
@@ -16,7 +13,7 @@ class AppointmentValidHour implements Rule
      */
     public function __construct()
     {
-            //   
+        //
     }
 
     /**
@@ -28,11 +25,8 @@ class AppointmentValidHour implements Rule
      */
     public function passes($attribute, $value)
     {
-            $datetime = explode(' ', $value);
-            if (count($datetime) != 2) {
-                return false;
-            }
-            return in_array($datetime[1], Config::get('hours.valid_hours'));        
+        $weekDay = date('w', strtotime($value));
+        return ($weekDay != 0 && $weekDay != 6);;
     }
 
     /**
@@ -42,6 +36,6 @@ class AppointmentValidHour implements Rule
      */
     public function message()
     {
-        return 'The selected hour is not valid. Format: Y-m-d H:i:s';
+        return 'Appointment cannot be on weekend.';
     }
 }
