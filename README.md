@@ -9,7 +9,7 @@
 
 ## Dead Dance challenge for Asimov
 
-### API Demo on [Heroku]() - [Docs]() powered by [Swagger](https://swagger.io/solutions/api-documentation/)
+### API Demo on [Heroku](https://deaddance.herokuapp.com/api/) - [Docs](https://deaddance.herokuapp.com/api/documentation) powered by [Swagger](https://swagger.io/solutions/api-documentation/)
 
 ### Startup
 
@@ -31,7 +31,7 @@ API will be on [localhost:8080/api](http://localhost:8080/api/documentation) - P
 
 ### Docs
 
-[Docs](http://localhost:8080/api/documentation) will be on localhost:8080/api/documentation
+[Docs](http://localhost:8080/api/documentation) will be on localhost:8080/api/documentation (Work in progress)
 
 ## License
 
