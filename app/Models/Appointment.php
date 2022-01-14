@@ -13,7 +13,7 @@ class Appointment extends Model
 {
     use HasFactory;
     
-    public function rules() {
+    public static function rules() {
         return [
             'name' => ['required'],
             'email' => ['required', 'email'],
