@@ -34,7 +34,7 @@ API will be on [localhost:8080/api](http://localhost:8080/api/documentation) - P
 
 ### Docs
 
-[Docs](http://localhost:8080/api/documentation) will be on localhost:8080/api/documentation (Work in progress)
+[Docs](http://localhost:8080/api/documentation) will be on localhost:8080/api/documentation
 
 ## License
 
