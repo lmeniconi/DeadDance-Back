@@ -250,7 +250,7 @@ class AppointmentController extends Controller
     {
         $weekDay = date('w', strtotime($date));
         if ($weekDay == 0 || $weekDay == 6) {
-            abort();
+            abort('406', 'Not available hours on weekend.');
         }
 
         $appointments = $this->getAppointmentsInDate($date);
