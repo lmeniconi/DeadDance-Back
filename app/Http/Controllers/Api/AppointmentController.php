@@ -17,9 +17,27 @@ class AppointmentController extends Controller
      *      tags={"Appointments"},
      *      summary="Get list of appointments",
      *      description="Returns list of appointments",
+     *      @OA\Parameter(
+     *          name="date",
+     *          description="Optional Appointments date",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string",
+     *              example="2022-01-10"
+     *          )
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *          @OA\JsonContent(
+     *              type="array",
+     *              @OA\Items(
+     *                  @OA\Property(property="name", type="string", example="example"),
+     *                  @OA\Property(property="email", type="string", example="example@example.com"),
+     *                  @OA\Property(property="start", type="string", example="2024-06-12 10:00:00")
+     *              )
+     *          )
      *       ),
      *  )
      */
@@ -46,10 +64,22 @@ class AppointmentController extends Controller
      *      description="Returns appointment data",
      *      @OA\RequestBody(
      *          required=true,
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(property="name", type="string", example="example"),
+     *              @OA\Property(property="email", type="string", example="example@example.com"),
+     *              @OA\Property(property="start", type="string", example="2024-06-12 10:00:00")
+     *          )
      *      ),
      *      @OA\Response(
      *          response=201,
      *          description="Successful operation",
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(property="name", type="string", example="example"),
+     *              @OA\Property(property="email", type="string", example="example@example.com"),
+     *              @OA\Property(property="start", type="string", example="2024-06-12 10:00:00")
+     *          )
      *       ),
      *      @OA\Response(
      *          response=400,
@@ -83,10 +113,16 @@ class AppointmentController extends Controller
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(property="name", type="string", example="example"),
+     *              @OA\Property(property="email", type="string", example="example@example.com"),
+     *              @OA\Property(property="start", type="string", example="2024-06-12 10:00:00")
+     *          )
      *       ),
      *      @OA\Response(
      *          response=404,
-     *          description="Resource Not Found"
+     *          description="Resource Not Found",
      *      )
      * )
      */
@@ -114,10 +150,22 @@ class AppointmentController extends Controller
      *      ),
      *      @OA\RequestBody(
      *          required=true,
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(property="name", type="string", example="example"),
+     *              @OA\Property(property="email", type="string", example="example@example.com"),
+     *              @OA\Property(property="start", type="string", example="2024-06-12 10:00:00")
+     *          )
      *      ),
      *      @OA\Response(
      *          response=202,
      *          description="Successful operation",
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(property="name", type="string", example="example"),
+     *              @OA\Property(property="email", type="string", example="example@example.com"),
+     *              @OA\Property(property="start", type="string", example="2024-06-12 10:00:00")
+     *          )
      *       ),
      *      @OA\Response(
      *          response=404,
@@ -191,11 +239,20 @@ class AppointmentController extends Controller
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *          @OA\JsonContent(
+     *              type="array",
+     *              @OA\Items(type="string", example="10:00:00")
+     *          )
      *       ),
      *     )
      */
     public function availableHours(Request $request, $date)
     {
+        $weekDay = date('w', strtotime($date));
+        if ($weekDay == 0 || $weekDay == 6) {
+            abort();
+        }
+
         $appointments = $this->getAppointmentsInDate($date);
         $hours = Config::get('hours.valid_hours');
 
@@ -230,7 +287,7 @@ class AppointmentController extends Controller
     public function getAppointmentById($id) {
         $appointment = Appointment::find($id);
         if (!$appointment) {
-            abort(404);
+            abort(404, 'Resource not found');
         }
         return $appointment;
     }

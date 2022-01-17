@@ -27,9 +27,45 @@
                 "summary": "Get list of appointments",
                 "description": "Returns list of appointments",
                 "operationId": "getAppointmentsList",
+                "parameters": [
+                    {
+                        "name": "date",
+                        "in": "query",
+                        "description": "Optional Appointments date",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "2022-01-10"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
-                        "description": "Successful operation"
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "example": "example"
+                                            },
+                                            "email": {
+                                                "type": "string",
+                                                "example": "example@example.com"
+                                            },
+                                            "start": {
+                                                "type": "string",
+                                                "example": "2024-06-12 10:00:00"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -41,11 +77,53 @@
                 "description": "Returns appointment data",
                 "operationId": "storeAppointment",
                 "requestBody": {
-                    "required": true
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "example"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "example@example.com"
+                                    },
+                                    "start": {
+                                        "type": "string",
+                                        "example": "2024-06-12 10:00:00"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "201": {
-                        "description": "Successful operation"
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "example": "example"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "example": "example@example.com"
+                                        },
+                                        "start": {
+                                            "type": "string",
+                                            "example": "2024-06-12 10:00:00"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     },
                     "400": {
                         "description": "Bad Request"
@@ -74,7 +152,28 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Successful operation"
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "example": "example"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "example": "example@example.com"
+                                        },
+                                        "start": {
+                                            "type": "string",
+                                            "example": "2024-06-12 10:00:00"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "Resource Not Found"
@@ -100,11 +199,53 @@
                     }
                 ],
                 "requestBody": {
-                    "required": true
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "example"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "example@example.com"
+                                    },
+                                    "start": {
+                                        "type": "string",
+                                        "example": "2024-06-12 10:00:00"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "202": {
-                        "description": "Successful operation"
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "example": "example"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "example": "example@example.com"
+                                        },
+                                        "start": {
+                                            "type": "string",
+                                            "example": "2024-06-12 10:00:00"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "Resource Not Found"
@@ -165,7 +306,18 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Successful operation"
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "example": "10:00:00"
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
