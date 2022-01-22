@@ -20,7 +20,7 @@ $ cp .env.example .env
 # install the dependencies
 $ composer install
 
-# generate the app secret key (we don't using password hashing but is a good practice)
+# generate the app secret key (we don't using sessions but is a good practice)
 $ php artisan key:generate
 
 # generate Swagger docs
